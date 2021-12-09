@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import Tumi from "../Images/img_497174.png.crdownload";
-import Navbar from "./Navbar";
+import React from "react";
+import {useSelector} from "react-redux"
 const JobList = () => {
+  const user  = useSelector((state) => state.user.value);
   return (
     <div>
-      <Navbar />
       
       <h1>Job Vacancy List</h1>;
       <table class="table">
         <thead>
+
+
           <tr>
             <th scope="col">Company Name</th>
             <th scope="col">Job Title</th>
@@ -19,19 +20,28 @@ const JobList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">hkjKJjk</th>
-            <td>dkfunvduif</td>
-            <td>jbjvdkj</td>
-            <td>@kjfnvekjf</td>
-            <td>@kjfnvekjf</td>
+
+          {user.map((user, id) => {
+
+            return (
+          <tr key={id}>
+            
+            <th scope="row">{user.company}</th>
+            <td>{user.title}</td>
+            <td>{user.address}</td>
+            <td>{user.contact}</td>
+            <td>{user.position}</td>
+
             <td>
               <button type="submit" class="btn btn-primary">
-                {" "}
-                Select <img style={{ height: "20px" }} src={Tumi} alt="" />
+                Select 
               </button>
             </td>
           </tr>
+
+
+            )
+          })}
         </tbody>
       </table>
     </div>

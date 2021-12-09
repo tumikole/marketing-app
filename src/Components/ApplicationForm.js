@@ -1,23 +1,39 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { login } from "../features/login"
 import "../App.css";
 
 const ApplicationForm = () => {
-  const [registrationForm, setRegistrationForm] = useState({
-    firstname: "",
-    lastname: "",
-    options: "",
-  });
+  const [firstname, setFirstname] = useState({});
+    const [lastname, setLastname] = useState({});
+      const [choose, setChoose] = useState({});
+
+
+const dispatch = useDispatch()
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  dispatch(login({
+    firstname: firstname,
+    lastname: lastname,
+    choose: choose,
+    logged:true,
+  }));
+}
+
   console.log("[e.target.value]")
   return (
     <div className="">
       <h1>Application Form</h1>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label for="firstname">First Name</label>
           <input
             type="text"
-            value={registrationForm.firstname}
-            onChange={(e) => setRegistrationForm(e.target.value)}
+            value={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
             class="form-control"
             placeholder="First Name"
           />
@@ -26,8 +42,8 @@ const ApplicationForm = () => {
           <label for="lastname">Las Name</label>
           <input
             type="text"
-            value={registrationForm.lastname}
-            onChange={(e) => setRegistrationForm(e.target.value)}
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
             class="form-control"
             placeholder="Last Name"
           />
@@ -35,14 +51,14 @@ const ApplicationForm = () => {
         <div>
           <label for="options">Options</label>
           <select
-            onChange={(e) => setRegistrationForm(e.target.value)}
+            
             class="form-control"
           >
             <option disabled selected>
               Choose
             </option>
-            <option value={registrationForm.option}>Job Advertise</option>
-            <option value={registrationForm.option}>Job Markerting</option>
+            <option value={choose} onChange={(e) => setChoose(e.target.value)}>Job Advertise</option>
+            <option value={choose} onChange={(e) => setChoose(e.target.value)}>Job Markerting</option>
           </select>
         </div>
         <br />

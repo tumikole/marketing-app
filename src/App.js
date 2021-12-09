@@ -3,6 +3,7 @@ import './App.css';
 import ApplicationForm from './Components/ApplicationForm'
 // import AdvertisingApplicationForm from './Components/AdvertisingApplicationForm'
 // import JobList from './Components/JobList'
+
 // import AppliedList from './Components/AppliedList'
 // import {BrowserRouter as Router, useRoutes} from "react-router-dom"
 // import './Css/navbar.css'
@@ -22,11 +23,9 @@ import ApplicationForm from './Components/ApplicationForm'
 function App() {
   return (
     <div className="App">
-     {/* <Router >
-            <Header/>
-            
-      </Router> */}
+  
       <ApplicationForm />
+   
     </div>
   );
 }

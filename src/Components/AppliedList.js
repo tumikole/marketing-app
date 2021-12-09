@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Navbar from './Navbar'
 const  AppliedList = () => {
     return (
         <div>  
-                            <Navbar />
  
             <div class="card" style={{width: "25rem"}}>
             <h1>Applied Vecancy</h1>

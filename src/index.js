@@ -4,8 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
-import store from './Redux/store'
+import userReducer from './features/user'
+import loginUserReducer from './features/login'
+
+
+
+let store = configureStore({
+  reducer: {
+  user: userReducer,
+  loginUser: loginUserReducer,
+  },
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
