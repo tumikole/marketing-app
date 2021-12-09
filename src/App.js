@@ -1,32 +1,26 @@
-import './App.css';
-// import Home from './Components/Home'
-import ApplicationForm from './Components/ApplicationForm'
-// import AdvertisingApplicationForm from './Components/AdvertisingApplicationForm'
-// import JobList from './Components/JobList'
+import "./App.css";
+import AdvertisingApplicationForm from "./Components/AdvertisingApplicationForm";
+import ApplicationForm from "./Components/ApplicationForm";
+import JobList from "./Components/JobList";
+import AppliedList from "./Components/AppliedList";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
-// import AppliedList from './Components/AppliedList'
-// import {BrowserRouter as Router, useRoutes} from "react-router-dom"
-// import './Css/navbar.css'
-
-
-// const Header =  () => {
-//   let Routes = useRoutes([
-// { path:"/home", exact: true, element:<Home /> },
-// { path:"registration", element:<ApplicationForm /> },
-// { path:"/advertise", element:<AdvertisingApplicationForm /> },
-// { path:"/vacancies", element:<JobList /> },
-// { path:"/applied", element:<AppliedList /> },
-//   ])
-// return Routes
-// }
 
 function App() {
+
   return (
-    <div className="App">
-  
-      <ApplicationForm />
-   
+    <Router>
+<div className="App">
+    <Routes>
+    <Route path="/" element={<Navigate to="applicationform"/>} />   
+     <Route path="/Applicationform/*" element={<ApplicationForm />} />   
+      <Route path="/advertise" element={<AdvertisingApplicationForm />} />
+      <Route path="/list" element={<JobList />} />
+      <Route path="/applied" element={<AppliedList />} />
+    </Routes>
+    
     </div>
+    </Router>
   );
 }
 

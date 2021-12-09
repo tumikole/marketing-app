@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { advertise } from "../features/user.js";
+// import { Link } from "react-router-dom";
+
 
 const AdvertisingApplicationForm = () => {
   const [company, setCompany] = useState({});
@@ -84,7 +86,10 @@ const AdvertisingApplicationForm = () => {
         </div>
 
         <br />
-        <button type="submit" class="btn btn-primary">Adertise</button>
+        {/* <Link to={"/list"} ></Link> */}
+
+        <button type="submit" class="btn btn-primary">
+          Adertise</button>
       </form>
     </div>
   );

@@ -13,14 +13,15 @@ import loginUserReducer from './features/login'
 
 let store = configureStore({
   reducer: {
+    loginUser: loginUserReducer,
   user: userReducer,
-  loginUser: loginUserReducer,
   },
 });
 
 
 ReactDOM.render(
   <React.StrictMode>
+    
       <Provider store={store} >
     <App />
     </Provider>

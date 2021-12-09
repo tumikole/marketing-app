@@ -2,6 +2,15 @@ import React from "react";
 import {useSelector} from "react-redux"
 const JobList = () => {
   const user  = useSelector((state) => state.user.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    
+    
+  }
+
+
   return (
     <div>
       
@@ -33,7 +42,7 @@ const JobList = () => {
             <td>{user.position}</td>
 
             <td>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary" onClick={(e) => handleSubmit(e)}>
                 Select 
               </button>
             </td>
