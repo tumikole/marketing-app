@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import AdvertisingApplicationForm from '../Components/AdvertisingApplicationForm'
 import { login } from "../features/login"
 import { Link } from "react-router-dom";
-
+// import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 const ApplicationForm = () => {
@@ -14,16 +14,19 @@ const ApplicationForm = () => {
 
 const dispatch = useDispatch()
 
-const handleSubmit = (e) => {
+const HandleSubmit = (e) => {
   e.preventDefault();
+  // const navigate = useNavigate();
 if (firstname && lastname && choose !== '') {
-  
+  // navigate.push("/advertise");
   dispatch(login({
     firstname: firstname,
     lastname: lastname,
     choose: choose,
     loggedIn:true
   }));
+}else{
+  return alert("Fill all the required fields")
 }
 
   if (login.loggedIn !== true) {
@@ -35,8 +38,8 @@ if (firstname && lastname && choose !== '') {
 }
   return (
     <div className="">
-      <h1>Application Form</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <h1>Login Form</h1>
+      <form onSubmit={(e) => HandleSubmit(e)}>
         <div>
           <label for="firstname">First Name</label>
           <input
@@ -72,11 +75,11 @@ if (firstname && lastname && choose !== '') {
         </div>
         <br />
         <div>
-        <Link disabled to="/advertise" >
+        {/* <Link disabled to="/advertise" > */}
           <button type="submit" class="btn btn-primary">
             Submit
           </button>
-          </Link>
+          {/* </Link> */}
         </div>
       </form>
     </div>

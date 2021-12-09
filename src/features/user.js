@@ -3,7 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    value: [],
+    value: [{
+      company: "sdasd",
+      title: "dasd",
+      address: "asdsdsa",
+      contact: "contact",
+      position: "position",
+
+    }],
   },
   reducers: {
     advertise: (state, action) => {
