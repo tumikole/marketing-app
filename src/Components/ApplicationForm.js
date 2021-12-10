@@ -1,41 +1,30 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import AdvertisingApplicationForm from '../Components/AdvertisingApplicationForm'
-import { login } from "../features/login"
-import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { login } from "../features/login";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 const ApplicationForm = () => {
   const [firstname, setFirstname] = useState();
-    const [lastname, setLastname] = useState();
-      const [choose, setChoose] = useState();
+  const [lastname, setLastname] = useState();
+  const [select, setSelect] = useState();
 
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch()
+  let navigate = useNavigate();
 
-const HandleSubmit = (e) => {
-  e.preventDefault();
-  // const navigate = useNavigate();
-if (firstname && lastname && choose !== '') {
-  // navigate.push("/advertise");
-  dispatch(login({
-    firstname: firstname,
-    lastname: lastname,
-    choose: choose,
-    loggedIn:true
-  }));
-}else{
-  return alert("Fill all the required fields")
-}
+  const redirect = () => {
+    navigate(select === "Job Advertise" ? "/advertise" : "/list");
 
-  if (login.loggedIn !== true) {
-    return <AdvertisingApplicationForm/>
+    console.log(select);
+  };
 
-  }
-  
-  
-}
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    if (firstname && lastname && select !== "") {
+      dispatch(login({ firstname, lastname, select }), redirect());
+    }
+  };
   return (
     <div className="">
       <h1>Login Form</h1>
@@ -61,25 +50,24 @@ if (firstname && lastname && choose !== '') {
           />
         </div>
         <div>
-          <label for="options">Options</label>
+          <label for="options">Select</label>
           <select
-            onChange={(e) => setChoose(e.target.value)}
+            onChange={(e) => setSelect(e.target.value)}
             class="form-control"
+            value={select}
           >
             <option disabled selected>
               Choose
             </option>
-            <option value={choose} >Job Advertise</option>
-            <option value={choose} >Job Markerting</option>
+            <option>Job Advertise</option>
+            <option>Job Markerting</option>
           </select>
         </div>
         <br />
         <div>
-        {/* <Link disabled to="/advertise" > */}
           <button type="submit" class="btn btn-primary">
             Submit
           </button>
-          {/* </Link> */}
         </div>
       </form>
     </div>

@@ -1,32 +1,50 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { advertise } from "../features/user.js";
-// import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 const AdvertisingApplicationForm = () => {
-  const [company, setCompany] = useState({});
-  const [title, setTitle] = useState({});
-  const [address, setAddress] = useState({});
-  const [contact, setContact] = useState({});
-  const [position, setPosition] = useState({});
+  const [advertiseForm, setAdvertiseForm] = useState({
+    company: "",
+    address: "",
+    title: "",
+    contact: "",
+    position: "",
+  });
+ 
 
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+
+  const redirect = () => {
+const {company , position, contact, title, address } = advertiseForm
+console.log( company)
+    navigate( company === "" ? "/advertise" : "/list");
+
+  };
+
+  const direct = () => {
+    navigate("/advertise" ? "/applicationform" : null);
+
+    console.log(advertise);
+  };
+
+  const handleChange = (e) => {
+    setAdvertiseForm({
+      ...advertiseForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handlePervious = (e) => {
+    e.preventDefault();
+    direct();
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      advertise({
-        company: company,
-        title: title,
-        address: address,
-        contact: contact,
-        position: position,
-      })
-    );
+    dispatch(advertise(advertiseForm , redirect()));
   };
-
-
 
   return (
     <div className="AdvertisingApplicationFormBody">
@@ -37,59 +55,65 @@ const AdvertisingApplicationForm = () => {
             <label for="firstname">Company Name</label>
             <input
               type="text"
+              name="company"
               class="form-control"
               placeholder="Company Name"
-              value={company.company}
-              onChange={(event) => setCompany(event.target.value)}
+              value={advertiseForm.company}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div class="form-group col-md-6">
             <label for="lastname">Job Title</label>
             <input
               type="text"
+              name="title"
               class="form-control"
-              value={title.title}
+              value={advertiseForm.title}
               placeholder="Job Title"
-              onChange={(event) => setTitle(event.target.value)}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div class="form-group col-md-6">
             <label for="inputAddress">Address</label>
             <input
               type="text"
+              name="address"
               class="form-control"
               placeholder="1234 Main St"
-              value={address.address}
-              onChange={(event) => setAddress(event.target.value)}
+              value={advertiseForm.address}
+              onChange={handleChange}
             />
           </div>
           <div class="form-group col-md-6">
             <label for="inputContact">Contact Number</label>
             <input
               type="number"
+              name="contact"
               class="form-control"
               placeholder="Contact Number"
-              value={contact.contact}
-              onChange={(event) => setContact(event.target.value)}
+              value={advertiseForm.contact}
+              onChange={handleChange}
             />
           </div>
           <div class="form-group col-md-6">
             <label for="inputPosition">Position</label>
             <input
               type="text"
+              name="position"
               class="form-control"
               placeholder="Position"
-              value={position.position}
-              onChange={(event) => setPosition(event.target.value)}
+              value={advertiseForm.position}
+              onChange={handleChange}
             />
           </div>
         </div>
-
         <br />
-        {/* <Link to={"/list"} ></Link> */}
-
         <button type="submit" class="btn btn-primary">
-          Adertise</button>
+          Adertise
+        </button>
+        <button type="submit" class="btn btn-danger" onClick={handlePervious}>
+          Previous Page
+        </button>
       </form>
     </div>
   );

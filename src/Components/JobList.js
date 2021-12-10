@@ -1,15 +1,27 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 const JobList = () => {
   const user = useSelector((state) => state.user.value);
 
-  
+  let navigate = useNavigate();
+
+  const redirect = () => {
+    navigate("/list" ? "/advertise" : null);
+
+    console.log();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("tumi");
+  };
 
+  const handlePervious = (e) => {
+    e.preventDefault();
+    redirect()
   };
 
   return (
@@ -50,6 +62,9 @@ const JobList = () => {
           })}
         </tbody>
       </table>
+      <button type="submit" class="btn btn-danger" onClick={handlePervious}>
+        Previous Page
+      </button>
     </div>
   );
 };
