@@ -26,7 +26,6 @@ console.log( company)
   const direct = () => {
     navigate("/advertise" ? "/applicationform" : null);
 
-    console.log(advertise);
   };
 
   const handleChange = (e) => {
