@@ -17,7 +17,7 @@ const AdvertisingApplicationForm = () => {
   let navigate = useNavigate();
 
   const redirect = () => {
-const {company , position, contact, title, address } = advertiseForm
+const {company } = advertiseForm
 console.log( company)
     navigate( company === "" ? "/advertise" : "/list");
 
